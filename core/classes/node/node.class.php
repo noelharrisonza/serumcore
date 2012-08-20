@@ -90,6 +90,8 @@ class node {
 		global $db;
 		global $user;
 		$pk = uniqid().rand();
+		$key = $db->escape($key);
+		$value = $db->escape($value);
 		$db->query("INSERT INTO nodes (id,node_key,node_value,date_created,creator_node,revision,node_type) VALUES ('{$pk}','{$key}','{$value}',NOW(),'{$user->id}',1,'{$type}')");
 		return new Node($db->insert_id);
 	}

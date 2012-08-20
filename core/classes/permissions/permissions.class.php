@@ -11,6 +11,8 @@ class permissions {
 
     // Check if the session has been set.
     if ($_SESSION['SERUM_AUTHENTICATED']) {
+      //Globalise.
+      global $user;
       $user = new Node($_SESSION['ACTIVE_NODE_ID']);
       tpl_set('user',objectArray($user));
       return true;

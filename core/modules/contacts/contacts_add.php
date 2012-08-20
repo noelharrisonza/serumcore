@@ -75,16 +75,14 @@ class contacts_add {
 
   // Validate the user input
   function add_contact_submit($form) {
-    // Then we can add the contact.
-    $node = new node();
-    
-    // We need to tell the node which is the parent field.
-    $form['fields']['title']['parent_field'] = true;
-
-    // Now we add the contact.
-    $node->add_node($form['fields'], 1);
-
+    $node = node::add_new('title',$form['fields']['title']['value'],1);
+    //Now loop through the rest of this array and add it to the node.
+    foreach($form['fields'] as $k => $v)
+    {
+      $node->add_field($v['name'],$v['value']);
+    }
+    die();
     // Then we tell the user about it.
-    serum_set_message('Contact has been added successfully.');
+    //serum_set_message('Contact has been added successfully.');
   }
 }

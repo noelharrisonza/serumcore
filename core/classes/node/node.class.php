@@ -68,7 +68,7 @@ class node {
 		global $db;
 
 		//Sanatise Data
-		$email		 	= $db->escape($email);
+		$email		= $db->escape($email);
 		$password 	= sha1($db->escape($password));
 
 		//Authenticate against the nodes
@@ -85,37 +85,26 @@ class node {
 		}
 	}
 
-	/**
-   * Add a new node.
-	 */
-  function add_node($fields = array(), $type) {
-  	global $db;
-    
-    $parent_node_id = 0;
-    $args = array();
-  	foreach ($fields as $k => $field) {
-  		$node_id = uniqid().rand();
+	public static function add_new($key,$value,$type)
+	{
+		global $db;
+		global $user;
+		$pk = uniqid().rand();
+		$db->query("INSERT INTO nodes (id,node_key,node_value,date_created,creator_node,revision,node_type) VALUES ('{$pk}','{$key}','{$value}',NOW(),'{$user->id}',1,'{$type}')");
+		return new Node($db->insert_id);
+	}
 
-  		$args = array(
-        $node_id,
-        $parent_node_id,
-        $k,
-        $field['value'],
-        $type,
-  		);
-
-  		// Look for the parent field first.
-  		if ($field['parent_field']) {
-  			$parent_node_id = $node_id;
-  			$args[1] = 0;
-  		}
-  		else {
-  			$args[4] = null;
-  		}
-  		
-  		if ($k != 'submitted_form') {
-  	  	$db->query(vsprintf("insert into nodes (id, parent_node_id, node_key, node_value, date_created, revison, node_type) values ('%s', '%s', '%s', '%s', NOW(), 1, '%s')", $args));
-  	  }
-  	}
-  }
+	public function add_field($key,$value)
+	{
+		global $db;
+		global $user;
+		//Ensure the hidden element isnt processed and that there are no duplicate keys.
+		if($key != 'submitted_form' && empty($this->$key))
+		{
+			$key = $db->escape($key);
+			$value = $db->escape($value);
+			$pk = uniqid().rand();
+			$db->query("INSERT INTO nodes (id,parent_node_id,node_key,node_value,date_created,creator_node,revision) VALUES ('{$pk}','{$this->id}','{$key}','{$value}',NOW(),'{$user->id}',1)");
+		}
+	}
 }

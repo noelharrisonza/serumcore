@@ -4,7 +4,7 @@
  * @file
  */
 
-class notifications {
+class notifications extends node{
   function make_new($notification) {
     
   }

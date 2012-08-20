@@ -1,0 +1,4 @@
+name = Contacts
+description = Manage all of the contacts
+
+core = 1.x

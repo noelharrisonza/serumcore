@@ -1,0 +1,3 @@
+name = Boot
+engine = smarty
+core = 1.x

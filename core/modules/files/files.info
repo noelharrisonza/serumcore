@@ -1,0 +1,4 @@
+name = Files
+description = Manage all of the files.
+
+core = 1.x

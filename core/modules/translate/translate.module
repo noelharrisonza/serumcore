@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Manage content translations.
+ */
+
+class translate {
+  /**
+   * Implementation of alter_t().
+   */
+  function alter_t($string) {
+    $lang = $this->translations('english');
+
+    return $lang[$string];
+  }
+
+  // Handle translations.
+  function translations($language) {
+    return array('Contacts' => 'Contacts');
+  }
+}

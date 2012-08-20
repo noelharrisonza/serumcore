@@ -1,0 +1,4 @@
+name = Notes
+description = Manage all of the notes.
+
+core = 1.x

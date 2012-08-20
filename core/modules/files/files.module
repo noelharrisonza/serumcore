@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ */
+ 
+ class files {
+  /**
+   * Build all the URLs for this module.
+   */
+  function urls() {
+    $urls = array();
+    
+    $urls['files'] = array(
+      'title' => t('Files'),
+      'description' => t('Manage all of your files.'),
+      'callback' => 'files.files_home',
+    );
+
+    $urls['files/upload'] = array(
+      'title' => t('Upload a file'),
+      'description' => t('Upload a file and assign it to something.'),
+      'callback' => 'files.files_upload',
+    );
+
+    return $urls;
+  }
+    
+
+  function files_home() {
+    tpl_set('content', 'Hola files');
+  }
+
+  function files_upload() {
+    
+  }
+}

@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * @file
+ */
+ 
+ class tasks {
+   function tasks_home() {
+     tpl_set('page_title', 'Tasks');
+     tpl_set('page_description', 'Manage all of your tasks');
+   }
+ }

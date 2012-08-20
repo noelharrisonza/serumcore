@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ *
+ * Manage all of the theming.
+ */
+
+class theme {
+  public $engine;
+  
+  function __construct() {
+    // Put the active engine into a variable.
+    $active_engine = SERUM_THEME_ENGINE;
+    
+    // Then invoke the engine and assign a new varibale.
+    $this->engine = new $active_engine();
+  }
+}

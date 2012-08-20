@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * @file
+ */
+
+class contacts {
+  /**
+   * Build all the URLs for this module.
+   */
+  function urls() {
+    $urls = array();
+    
+    $urls['contacts'] = array(
+      'title' => t('Contacts'),
+      'description' => t('Manage all of your contacts'),
+      'callback' => 'contacts.contacts_home',
+    );
+
+    $urls['contacts/add'] = array(
+      'title' => t('Add a contact'),
+      'description' => t('Add a new contact'),
+      'callback' => 'contacts_add.add_contact',
+      'file' => 'contacts_add.php',
+    );
+
+    $urls['contacts/view/%'] = array(
+      'title' => t('Contacts'),
+      'description' => t('Manage all of your contacts'),
+      'callback' => 'contacts.contacts_home',
+      'type' => 'callback',
+    );
+
+    $urls['contacts/view/%'] = array(
+      'title' => t('View a contact'),
+      'description' => t('Add a new contact'),
+      'callback' => 'contacts_add.view_contact',
+      'file' => 'contacts_view.php',
+      'type' => 'callback',
+    );
+
+    $urls['contacts/logout'] = array(
+      'title' => t('End Session'),
+      'description' => t('Logout'),
+      'callback' => 'contacts.logout',
+      'type' => 'callback',
+    );
+
+    return $urls;
+  }
+
+  function contacts_home() 
+  {
+    $type = node::lookup_type_id('contacts');
+    $contacts = node::get_all_of_type($type,15);
+    tpl_set('contacts',objectArray($contacts));
+  }
+
+  function logout()
+  {
+    unset($_SESSION['SERUM_AUTHENTICATED']);
+    header('location:'.base_path());
+  }
+}

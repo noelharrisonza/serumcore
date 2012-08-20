@@ -1,0 +1,85 @@
+<?php
+
+/**
+ * @file
+ */
+ 
+class groups {
+  /**
+   * Build all the URLs for this module.
+   */
+  function urls() {
+    $urls['groups'] = array(
+      'title' => t('Groups'),
+      'description' => t('Group like a boss'),
+      'callback' => 'groups.groups_home',
+    );
+
+    $urls['groups/add'] = array(
+      'title' => t('Add group'),
+      'description' => t('Add a new group'),
+      'callback' => 'groups.add_group',
+    );
+
+    $urls['groups/view/%/feature/%'] = array(
+      'title' => t('Fetch group'),
+      'description' => t('Fetch a group'),
+      'callback' => 'groups.group_get',
+      'type' => 'callback',
+    );
+
+    return $urls;
+  }
+  
+  // Groups dashboard.
+  function groups_home() {
+    tpl_set('content', 'A table of groups will go here sometime.');
+  }
+  
+  // Add a new group.
+  function add_group() {
+    // Initiate a new form.
+    $form = new forms(array(
+      'name' => 'create_a_group',
+      'method' => 'post',
+      'action' => '',
+      'class' => 'create_a_group_form form-horizontal',
+      'id' => 'create-a-group-form',
+    ));
+
+    // Now we start to add some elements.
+    $form->add_field(array(
+      'type' => 'text',
+      'name' => 'group_name',
+      'label' => t('Group name'),
+      'placeholder' => t('Put the group name here.'),
+    ));
+
+    $form->add_field(array(
+      'type' => 'textarea',
+      'name' => 'group_description',
+      'label' => t('Group description'),
+      'placeholder' => t('Put the group description in here.'),
+    ));
+
+    // Add a submit button.
+    $form->add_button(array(
+      'type' => 'submit',
+      'name' => 'add_group',
+      'value' => 'Add group',
+      'class' => 'btn btn-primary',
+    ));
+
+    // And now we deal with validations and submissions.
+    $form->validate('groups.create_group_validate');
+    $form->submit('groups.create_group_submit');
+
+    // form testing
+    $form->render();
+  }
+  
+  // Fetch groups.
+  function group_get() {
+    tpl_set('content', arg(1));
+  }
+}

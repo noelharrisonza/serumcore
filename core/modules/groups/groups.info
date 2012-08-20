@@ -1,0 +1,4 @@
+name = Groups
+description = Manage all of the groups.
+
+core = 1.x

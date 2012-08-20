@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ */
+ 
+class users {
+  function users_home() {
+    tpl_set('page_title', 'Users');
+    tpl_set('page_description', 'Manage all of your users and logins');
+  }
+
+  /**
+   * Login users.
+   */
+  function login() {
+
+  }
+
+  // Check if the user can login.
+  function check_login() {
+    
+  }
+
+  /**
+   * Register users.
+   */
+  function register() {
+
+  }
+
+  // Check if the user can register.
+  function can_register() {
+
+  }
+
+  /**
+   * Allow users to reset their passwords.
+   */
+  function reset_password() {
+
+  }
+}

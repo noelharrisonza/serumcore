@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * @file
+ *
+ * Make alterations to your theme.
+ */
+
+class boot extends theme {
+  
+}

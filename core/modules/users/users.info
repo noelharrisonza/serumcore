@@ -1,0 +1,4 @@
+name = Users
+description = Manage all of the users.
+
+core = 1.x

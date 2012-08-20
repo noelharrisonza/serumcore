@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * @file
+ */
+ 
+ class notes {
+   function notes_home() {
+     tpl_set('page_title', 'Notes');
+     tpl_set('page_description', 'Take some notes');
+   }
+ }

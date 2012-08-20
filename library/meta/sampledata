@@ -1,0 +1,192 @@
+# ************************************************************
+# Sequel Pro SQL dump
+# Version 3408
+#
+# http://www.sequelpro.com/
+# http://code.google.com/p/sequel-pro/
+#
+# Host: 127.0.0.1 (MySQL 5.5.9)
+# Database: serum
+# Generation Time: 2012-08-16 19:36:23 +0000
+# ************************************************************
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table global_settings
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `global_settings`;
+
+CREATE TABLE `global_settings` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `setting_key` varchar(255) DEFAULT NULL,
+  `setting_value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table localisation_strings
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `localisation_strings`;
+
+CREATE TABLE `localisation_strings` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `language` int(11) DEFAULT NULL,
+  `string_value` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table localisations_options
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `localisations_options`;
+
+CREATE TABLE `localisations_options` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `language` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table modules
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `modules`;
+
+CREATE TABLE `modules` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `module_name` varchar(255) DEFAULT NULL,
+  `system_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `modules` WRITE;
+/*!40000 ALTER TABLE `modules` DISABLE KEYS */;
+
+INSERT INTO `modules` (`id`, `module_name`, `system_name`)
+VALUES
+  (1,'Contacts','contacts'),
+  (3,'Groups','groups'),
+  (4,'Users','users');
+
+/*!40000 ALTER TABLE `modules` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table node_settings
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `node_settings`;
+
+CREATE TABLE `node_settings` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `setting_key` varchar(255) DEFAULT NULL,
+  `setting_value` varchar(255) DEFAULT NULL,
+  `node_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table node_templates
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `node_templates`;
+
+CREATE TABLE `node_templates` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_node_id` int(11) DEFAULT NULL,
+  `node_key` varchar(255) DEFAULT NULL,
+  `node_key_name` varchar(255) DEFAULT NULL,
+  `node_type` int(8) DEFAULT NULL,
+  `field_type` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `node_templates` WRITE;
+/*!40000 ALTER TABLE `node_templates` DISABLE KEYS */;
+
+INSERT INTO `node_templates` (`id`, `parent_node_id`, `node_key`, `node_key_name`, `node_type`, `field_type`)
+VALUES
+  (1,NULL,'title','Title',1,'text'),
+  (2,1,'mobile','Mobile Number',NULL,'text'),
+  (3,1,'email','Email Address',NULL,'text');
+
+/*!40000 ALTER TABLE `node_templates` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table node_types
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `node_types`;
+
+CREATE TABLE `node_types` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `node_types` WRITE;
+/*!40000 ALTER TABLE `node_types` DISABLE KEYS */;
+
+INSERT INTO `node_types` (`id`, `type`)
+VALUES
+  (1,'contacts');
+
+/*!40000 ALTER TABLE `node_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table nodes
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `nodes`;
+
+CREATE TABLE `nodes` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_node_id` int(11) DEFAULT NULL,
+  `node_key` varchar(255) DEFAULT NULL,
+  `node_value` text,
+  `date_created` datetime DEFAULT NULL,
+  `creator_node` int(11) DEFAULT NULL,
+  `revison` int(11) DEFAULT NULL,
+  `node_type` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `nodes` WRITE;
+/*!40000 ALTER TABLE `nodes` DISABLE KEYS */;
+
+INSERT INTO `nodes` (`id`, `parent_node_id`, `node_key`, `node_value`, `date_created`, `creator_node`, `revison`, `node_type`)
+VALUES
+  (1,NULL,'title','Noel Harrison','2012-08-14 20:07:33',1,1,1),
+  (2,1,'mobile','0718854924','2012-08-14 21:05:31',NULL,NULL,NULL),
+  (3,1,'email','noel.harrison2@gmail.com','2012-08-14 21:05:35',NULL,NULL,NULL),
+  (4,NULL,'title','Jonathan Wagener','2012-08-16 19:27:25',1,1,1),
+  (6,NULL,'title','Pierre Bezuidenhout','2012-08-16 20:42:51',1,1,1);
+
+/*!40000 ALTER TABLE `nodes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

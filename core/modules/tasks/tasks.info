@@ -1,0 +1,4 @@
+name = Tasks
+description = Manage all of the tasks.
+
+core = 1.x

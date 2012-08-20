@@ -1,0 +1,103 @@
+<?php
+
+/**
+ * @file
+ *
+ * The Smarty theme engine.
+ */
+
+// Load up the Smarty class.
+require_once SERUM_ROOT .'/library/smarty/Smarty.class.php';
+
+class smarty_engine extends Smarty {
+  function __construct() {
+    // Class Constructor.
+    // These automatically get set with each new instance.
+    $this->Smarty();
+    
+    $this->template_dir = SERUM_ROOT .'/core/themes/'. SERUM_THEME .'/templates/';
+    $this->compile_dir = SERUM_ROOT .'/custom/files/tmp/';
+    $this->config_dir = SERUM_ROOT .'/custom/files/tmp/';
+    $this->cache_dir = SERUM_ROOT .'/custom/files/tmp/';
+    
+    $this->caching = false;
+  }
+  
+  function render($args = array()) {
+    // Assign some default variables.
+    $this->assign('base_path', base_path());
+    $this->assign('app_name', 'serum');
+    $this->assign('arg', arg());
+    $this->assign('active_modules', get_active_modules());
+    $this->assign('current_url', get_current_path());
+
+    // We need to check if there are any messages.
+    if (isset($_SESSION['serum_messages'])) {
+      $this->assign('messages', $_SESSION['serum_messages']);
+      unset($_SESSION['serum_messages']);
+    }
+    
+    // Assign a sub menu if there is one.
+    $current_path = explode('/', get_current_path());
+    $module = $current_path[0];
+    
+    if ($module) {
+      $menu_tree = get_module_menu_tree($module);
+      if (isset($menu_tree)) {
+        $this->assign('sub_menu', $menu_tree[$module]['children']);
+      }
+    }
+    
+    // Call the header tpl.
+    if ($args['header']) {
+      $this->display('header.tpl');
+    }
+
+    // We need to choose a tpl file depending on the URL.
+    $active_url = get_current_path();
+    
+    // Get all of the system URLs.
+    $urls = get_all_urls();
+    
+    // Get the system url.
+    $system_urls = build_urls($urls);
+    
+    // Find the module.
+    $the_module = $urls[$system_urls['system']]['module'];
+
+    // Build some paths.
+    $tpl_path = serum_get_path('module', $the_module) .'/templates';
+    
+    // Get the default template file.
+    if ($args['template']) {
+      $default_tpl_file = $args['template'];
+      $tpl_name = $args['template'];
+    }
+    else {
+      $default_tpl_file = 'page.tpl';
+
+      $tpl_name = str_replace('%', '', $system_urls['system']);
+      $tpl_name = str_replace('/', '-', $tpl_name);
+      $tpl_name = str_replace('--', '-', $tpl_name);
+      $tpl_name = rtrim($tpl_name, '-');
+      $tpl_name .= '.tpl';
+    }
+    
+    $tpl = $tpl_path .'/'. $tpl_name;
+    
+    if (file_exists($tpl)) {
+      $this->display($tpl);
+    }
+    else {
+      $default_tpl_path = serum_get_path('theme', SERUM_THEME) .'/templates';
+      $default_tpl = $default_tpl_path .'/'. $default_tpl_file;
+      
+      $this->display($default_tpl);
+    }
+    
+    // Call the footer tpl.
+    if ($args['footer']) {
+      $this->display('footer.tpl');
+    }
+  }
+}

@@ -42,7 +42,7 @@
 			          <input type='{$form_raw.fields.email.type}' name='{$form_raw.fields.email.name}' placeholder='{$form_raw.fields.email.label}' style='margin-bottom: 10px; width:280px;'/>
 			          <input type='{$form_raw.fields.password.type}' name='{$form_raw.fields.password.name}' placeholder='{$form_raw.fields.password.label}' style='margin-bottom: 15px; width:280px;'/>
 	  						<input type='{$form_raw.buttons.register_button.type}' value='{$form_raw.buttons.register_button.value}' class='btn btn-primary btn-large' style='width: 63%;'/>
-	  						<a href='{$base_path}' class='btn btn-large' style='font-family: Arial; margin-left: 11px;'><i class='icon-remove'></i> Cancel</a>
+	  						<a href='{$base_path}' class='btn btn-large' style='font-family: Arial; margin-left: 9px;'><i class='icon-remove'></i> Cancel</a>
 	  					</form>
 		  			{elseif $arg.0 == 'lostpassword'}
 		  				<ul class="breadcrumb">
@@ -52,7 +52,7 @@
 	  						<input type='hidden' name='submitted_form' value='{$form_raw.fields.submitted_form.value}' placeholder='{$form_raw.fields.submitted_form.label}'/>
 			          <input type='{$form_raw.fields.email.type}' name='{$form_raw.fields.email.name}' placeholder='{$form_raw.fields.email.label}' style='margin-bottom: 10px; width:280px;'/>
 			          <input type='{$form_raw.buttons.register_button.type}' value='{$form_raw.buttons.register_button.value}' class='btn btn-primary btn-large' style='width: 63%;'/>
-	  						<a href='{$base_path}' class='btn btn-large' style='font-family: Arial; margin-left: 11px;'><i class='icon-remove'></i> Cancel</a>
+	  						<a href='{$base_path}' class='btn btn-large' style='font-family: Arial; margin-left: 9px;'><i class='icon-remove'></i> Cancel</a>
 		  				</form>
 		  			{else}	
 		  				{if $messages}

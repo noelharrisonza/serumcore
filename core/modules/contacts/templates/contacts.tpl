@@ -7,7 +7,7 @@
 				{/foreach}
 				{if $remaining > 0}
 					<br/>
-					<a href='' class='btn btn-info' style='width: 90%;'><i class='icon-user icon-white'></i> View All {$remaining} Contacts</a>
+					<a href='' class='btn btn-info'><i class='icon-user icon-white'></i> View All {$remaining} Contacts</a>
 				{/if}
 		  </ul>
 		</div> 

@@ -80,9 +80,7 @@ class contacts_add {
     //Now loop through the rest of this array and add it to the node.
     foreach($form['fields'] as $k => $v)
     {
-      if ($k != 'title') {
-        $node->add_field($v['name'],$v['value']);
-      }
+      $node->add_field($v['name'],$v['value']);
     }
     serum_set_message('Contact has been added successfully.');
     

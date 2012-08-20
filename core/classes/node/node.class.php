@@ -103,7 +103,7 @@ class node {
 		global $db;
 		global $user;
 		//Ensure the hidden element isnt processed and that there are no duplicate keys.
-		if($key != 'submitted_form' && !empty($this->$key))
+		if($key != 'submitted_form' && !isset($this->$key))
 		{
 			$key = $db->escape($key);
 			$value = $db->escape($value);

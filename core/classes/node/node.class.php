@@ -5,7 +5,9 @@
  */
 
 class node {
-
+  public $key;
+  public $id;
+  
 	public function __construct($id = null) {
 		global $db;
 		if (isset($id)) {
@@ -93,7 +95,7 @@ class node {
 		$key = $db->escape($key);
 		$value = $db->escape($value);
 		$db->query("INSERT INTO nodes (id,node_key,node_value,date_created,creator_node,revision,node_type) VALUES ('{$pk}','{$key}','{$value}',NOW(),'{$user->id}',1,'{$type}')");
-		return new Node($db->insert_id);
+		return new node($pk);
 	}
 
 	public function add_field($key,$value)
@@ -101,7 +103,7 @@ class node {
 		global $db;
 		global $user;
 		//Ensure the hidden element isnt processed and that there are no duplicate keys.
-		if($key != 'submitted_form' && empty($this->$key))
+		if($key != 'submitted_form' && !empty($this->$key))
 		{
 			$key = $db->escape($key);
 			$value = $db->escape($value);

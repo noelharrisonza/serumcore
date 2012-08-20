@@ -378,8 +378,11 @@ function objectArray($object) {
 /**
  * Set a pretty message.
  */
-function serum_set_message($message, $type = 'status') {
-  $_SESSION['serum_messages'] = $message;
+function serum_set_message($message, $type = 'status', $repeat = true) {
+  if ($message) {
+    $_SESSION['serum_messages'] = $message;
+    $_SESSION['serum_messages_views'] = 1;
+  }
 }
 
 // Tell the form api that this form has an error and cannot be processed.

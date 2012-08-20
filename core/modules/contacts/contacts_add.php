@@ -85,6 +85,6 @@ class contacts_add {
     serum_set_message('Contact has been added successfully.');
     
     // We need to return the form again. I dont like this much...
-    return $form;
+    header('location: '. base_path() .'contacts');
   }
 }

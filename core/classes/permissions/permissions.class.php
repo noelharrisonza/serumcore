@@ -68,6 +68,7 @@ class permissions {
       ));
 
       // And now we deal with validations and submissions.
+      $form->validate('permissions.validate_login_form');
       $form->submit('permissions.submit_register_form');
     }
     elseif($arg[0] == 'lostpassword')

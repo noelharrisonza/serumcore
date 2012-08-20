@@ -32,9 +32,13 @@ class smarty_engine extends Smarty {
     $this->assign('current_url', get_current_path());
 
     // We need to check if there are any messages.
-    if (isset($_SESSION['serum_messages'])) {
+    if (isset($_SESSION['serum_messages']) && $_SESSION['serum_messages_views'] < 3) {
       $this->assign('messages', $_SESSION['serum_messages']);
+      $_SESSION['serum_messages_views']++;
+    }
+    else {
       unset($_SESSION['serum_messages']);
+      unset($_SESSION['serum_messages_views']);
     }
     
     // Assign a sub menu if there is one.

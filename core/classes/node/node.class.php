@@ -109,4 +109,18 @@ class node {
 			$db->query("INSERT INTO nodes (id,parent_node_id,node_key,node_value,date_created,creator_node,revision) VALUES ('{$pk}','{$this->id}','{$key}','{$value}',NOW(),'{$user->id}',1)");
 		}
 	}
+
+	public function count_nodes_of_type($type,$minus_amount=0)
+	{
+		global $db;
+		$rs = $db->get_col("SELECT COUNT(id) as qryCount FROM nodes WHERE node_type = '{$type}'");
+		if($rs[0]-$minus_amount < 1)
+		{
+			return 0;
+		}
+		else
+		{
+			return $rs[0] - $minus_amount;
+		}
+	}
 }

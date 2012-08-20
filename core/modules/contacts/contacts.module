@@ -54,6 +54,10 @@ class contacts {
     $type = node::lookup_type_id('contacts');
     $contacts = node::get_all_of_type($type,15);
     tpl_set('contacts',objectArray($contacts));
+
+    //Check how many other contacts there are in the system excluding the above amount.
+    $remaining_contacts = node::count_nodes_of_type($type);
+    tpl_set('remaining',objectArray($remaining_contacts));
   }
 
   function logout()

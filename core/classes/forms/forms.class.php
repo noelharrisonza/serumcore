@@ -108,6 +108,7 @@ class forms {
     if (method_exists($function[0], $function[1])) {
       // If the forms validation returns true then we can call the submit function.
       if ($function[0]->{$function[1]}($this->form)) {
+        unset($_SESSION['form_values']);
         $this->submit_form();
       }
       // Otherwise we will just return to the form.
@@ -122,7 +123,11 @@ class forms {
     $function[0] = new $function[0]();
     if (method_exists($function[0], $function[1])) {
       // And now we're done and just let the submit function do it's thing.
-      $function[0]->{$function[1]}($this->form);
+      $this->form = $function[0]->{$function[1]}($this->form);
+    }
+
+    foreach ($this->form['fields'] as $k => $field) {
+      unset($this->form['fields'][$k]['value']);
     }
   }
 }

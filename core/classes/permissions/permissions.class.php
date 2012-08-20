@@ -68,8 +68,7 @@ class permissions {
       ));
 
       // And now we deal with validations and submissions.
-      $form->validate('permissions.validate_login_form');
-      $form->submit('permissions.submit_login_form');
+      $form->submit('permissions.submit_register_form');
     }
     elseif($arg[0] == 'lostpassword')
     {
@@ -182,5 +181,15 @@ class permissions {
       serum_set_message('Authentication Failed.', $type = 'status');
     }
     header('location: '. base_path());
+  }
+
+  function submit_register_form($form)
+  {
+    /*$node = node::add_new('title','',1);
+    //Now loop through the rest of this array and add it to the node.
+    foreach($form['fields'] as $k => $v)
+    {
+      $node->add_field($v['name'],$v['value']);
+    }*/
   }
 }

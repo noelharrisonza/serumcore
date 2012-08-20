@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.9)
 # Database: serum
-# Generation Time: 2012-08-16 19:36:23 +0000
+# Generation Time: 2012-08-20 19:45:34 +0000
 # ************************************************************
 
 
@@ -163,7 +163,7 @@ CREATE TABLE `nodes` (
   `node_value` text,
   `date_created` datetime DEFAULT NULL,
   `creator_node` int(11) DEFAULT NULL,
-  `revison` int(11) DEFAULT NULL,
+  `revision` int(11) DEFAULT NULL,
   `node_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -171,13 +171,17 @@ CREATE TABLE `nodes` (
 LOCK TABLES `nodes` WRITE;
 /*!40000 ALTER TABLE `nodes` DISABLE KEYS */;
 
-INSERT INTO `nodes` (`id`, `parent_node_id`, `node_key`, `node_value`, `date_created`, `creator_node`, `revison`, `node_type`)
+INSERT INTO `nodes` (`id`, `parent_node_id`, `node_key`, `node_value`, `date_created`, `creator_node`, `revision`, `node_type`)
 VALUES
   (1,NULL,'title','Noel Harrison','2012-08-14 20:07:33',1,1,1),
   (2,1,'mobile','0718854924','2012-08-14 21:05:31',NULL,NULL,NULL),
   (3,1,'email','noel.harrison2@gmail.com','2012-08-14 21:05:35',NULL,NULL,NULL),
   (4,NULL,'title','Jonathan Wagener','2012-08-16 19:27:25',1,1,1),
-  (6,NULL,'title','Pierre Bezuidenhout','2012-08-16 20:42:51',1,1,1);
+  (6,NULL,'title','Pierre Bezuidenhout','2012-08-16 20:42:51',1,1,1),
+  (50325,0,'title','Andre Harrison','2012-08-20 17:48:56',NULL,1,1),
+  (503145,0,'title','Peter Beretta','2012-08-19 21:59:53',NULL,1,1),
+  (503146,1,'password','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3','2012-08-14 21:05:35',NULL,NULL,NULL),
+  (503292,NULL,'title','Jonathan Brown','2012-08-20 21:41:49',1,1,1);
 
 /*!40000 ALTER TABLE `nodes` ENABLE KEYS */;
 UNLOCK TABLES;

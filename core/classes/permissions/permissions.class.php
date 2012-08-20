@@ -10,7 +10,7 @@ class permissions {
     global $db;
 
     // Check if the session has been set.
-    if ($_SESSION['SERUM_AUTHENTICATED']) {
+    if($_SESSION['SERUM_AUTHENTICATED']) {
       //Globalise.
       global $user;
       $user = new Node($_SESSION['ACTIVE_NODE_ID']);
@@ -179,6 +179,7 @@ class permissions {
     {
       //Send error message back to browser.
       $_SESSION['SERUM_AUTHENTICATED'] = false;
+      serum_set_message('Authentication Failed.', $type = 'status');
     }
     header('location: '. base_path());
   }

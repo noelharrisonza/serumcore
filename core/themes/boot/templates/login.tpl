@@ -39,10 +39,10 @@
 							</div>
 			        <form name='{$form_raw.meta.name}' method='{$form_raw.meta.method}' class='{$form_raw.meta.class}' action='{$form_raw.meta.action}' id='{$form_raw.meta.id}' style='margin-bottom: 10px;'>
 	  						<input type='hidden' name='submitted_form' value='{$form_raw.fields.submitted_form.value}' placeholder='{$form_raw.fields.submitted_form.label}'/>
-			          <input type='{$form_raw.fields.email.type}' name='{$form_raw.fields.email.name}' placeholder='{$form_raw.fields.email.label}' style='margin-bottom: 10px; width:280px;'/>
-			          <input type='{$form_raw.fields.password.type}' name='{$form_raw.fields.password.name}' placeholder='{$form_raw.fields.password.label}' style='margin-bottom: 15px; width:280px;'/>
+			          <input type='{$form_raw.fields.email.type}' name='{$form_raw.fields.email.name}' placeholder='{$form_raw.fields.email.label}' style='margin-bottom: 10px; width:274px;'/>
+			          <input type='{$form_raw.fields.password.type}' name='{$form_raw.fields.password.name}' placeholder='{$form_raw.fields.password.label}' style='margin-bottom: 15px; width:274px;'/>
 	  						<input type='{$form_raw.buttons.register_button.type}' value='{$form_raw.buttons.register_button.value}' class='btn btn-primary btn-large' style='width: 63%;'/>
-	  						<a href='{$base_path}' class='btn btn-large' style='font-family: Arial; margin-left: 9px;'><i class='icon-remove'></i> Cancel</a>
+	  						<a href='{$base_path}' class='btn btn-large pull-right' style='font-family: Arial;'><i class='icon-remove'></i> Cancel</a>
 	  					</form>
 		  			{elseif $arg.0 == 'lostpassword'}
 		  				<ul class="breadcrumb">
@@ -50,9 +50,9 @@
 							</ul>
 							<form name='{$form_raw.meta.name}' method='{$form_raw.meta.method}' class='{$form_raw.meta.class}' action='{$form_raw.meta.action}' id='{$form_raw.meta.id}' style='margin-bottom: 10px;'>
 	  						<input type='hidden' name='submitted_form' value='{$form_raw.fields.submitted_form.value}' placeholder='{$form_raw.fields.submitted_form.label}'/>
-			          <input type='{$form_raw.fields.email.type}' name='{$form_raw.fields.email.name}' placeholder='{$form_raw.fields.email.label}' style='margin-bottom: 10px; width:280px;'/>
+			          <input type='{$form_raw.fields.email.type}' name='{$form_raw.fields.email.name}' placeholder='{$form_raw.fields.email.label}' style='margin-bottom: 10px; width:274px;'/>
 			          <input type='{$form_raw.buttons.register_button.type}' value='{$form_raw.buttons.register_button.value}' class='btn btn-primary btn-large' style='width: 63%;'/>
-	  						<a href='{$base_path}' class='btn btn-large' style='font-family: Arial; margin-left: 9px;'><i class='icon-remove'></i> Cancel</a>
+	  						<a href='{$base_path}' class='btn btn-large pull-right' style='font-family: Arial;'><i class='icon-remove'></i> Cancel</a>
 		  				</form>
 		  			{else}	
 		  				{if $messages}
@@ -68,9 +68,10 @@
 								</ul>
 				        <form name='{$form_raw.meta.name}' method='{$form_raw.meta.method}' class='{$form_raw.meta.class}' action='{$form_raw.meta.action}' id='{$form_raw.meta.id}' style='margin-bottom: 10px;'>
 				        	<input type='hidden' name='submitted_form' value='{$form_raw.fields.submitted_form.value}' placeholder='{$form_raw.fields.submitted_form.label}'/>
-				          <input type='{$form_raw.fields.username.type}' name='{$form_raw.fields.username.name}' placeholder='{$form_raw.fields.username.label}' style='margin-bottom: 10px; width:280px;'/>
-				          <input type='{$form_raw.fields.password.type}' name='{$form_raw.fields.password.name}' placeholder='{$form_raw.fields.password.label}' style='margin-bottom: 15px; width:280px;'/>
-				          <input type='{$form_raw.buttons.login_button.type}' value='{$form_raw.buttons.login_button.value}' class='btn btn-primary btn-large' style='width: 60%;'/><a href='{$base_path}register/' class='btn btn-large' style='font-family: Arial; margin-left: 11px;'><i class='icon-pencil'></i> Register</a>
+				          <input type='{$form_raw.fields.username.type}' name='{$form_raw.fields.username.name}' placeholder='{$form_raw.fields.username.label}' style='margin-bottom: 10px; width:274px;'/>
+				          <input type='{$form_raw.fields.password.type}' name='{$form_raw.fields.password.name}' placeholder='{$form_raw.fields.password.label}' style='margin-bottom: 15px; width:274px;'/>
+				          <input type='{$form_raw.buttons.login_button.type}' value='{$form_raw.buttons.login_button.value}' class='btn btn-primary btn-large' style='width: 60%;'/>
+				          <a href='{$base_path}register/' class='btn btn-large pull-right' style='font-family: Arial;'><i class='icon-pencil'></i> Register</a>
 				        </form>
 				    {/if}
 				    </div>

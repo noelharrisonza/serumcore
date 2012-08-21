@@ -44,7 +44,7 @@
 								  <li class="active">Step 1</li>
 								</ul>
 			  				<div class="progress progress-striped active">
-								  <div class="bar" style="width: 20%;"></div>
+								  <div class="bar" style="width: 25%;"></div>
 								</div>
 				        <form name='{$form_raw.meta.name}' method='{$form_raw.meta.method}' class='{$form_raw.meta.class}' action='{$form_raw.meta.action}' id='{$form_raw.meta.id}' style='margin-bottom: 10px;'>
 		  						<input type='hidden' name='submitted_form' value='{$form_raw.fields.submitted_form.value}' placeholder='{$form_raw.fields.submitted_form.label}'/>
@@ -60,9 +60,12 @@
 								  <li>
 								    Register <span class="divider">/</span>
 								  </li>
-								  <li class="active">Step 2</li>
+								  <li class="active">Step 2 - Activation</li>
 								</ul>
-								<div class='alert'>
+			  				<div class="progress progress-striped active">
+								  <div class="bar" style="width: 50%;"></div>
+								</div>
+								<div class='alert alert-info'>
 									We have sent a confirmation email with an activation code to {$node.email}.
 								</div>
 								<form name='{$form_raw.meta.name}' method='{$form_raw.meta.method}' class='{$form_raw.meta.class}' action='{$form_raw.meta.action}' id='{$form_raw.meta.id}' style='margin-bottom: 10px;'>

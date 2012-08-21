@@ -120,7 +120,7 @@ class permissions {
         $form->submit('permissions.submit_activation_form');
       }
     }
-    elseif($arg[0] == 'lostpassword')
+    else if($arg1[0] == 'lostpassword')
     {
       // Initiate a new form.
       $form = new forms(array(

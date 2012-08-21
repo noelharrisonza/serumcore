@@ -56,12 +56,14 @@
 		  						<a href='{$base_path}' class='btn btn-large pull-right' style='font-family: Arial;'><i class='icon-remove'></i> Cancel</a>
 		  					</form>
 		  				{elseif $arg.1 == '2'}
-			  				<div class='alert alert-danger'>
-		  						<a class="close" data-dismiss="alert" href="#">&times;</a>
-			  					{foreach from=$messages item=message}
-			  						{$message}<br/>
-			  					{/foreach}
-		  					</div>
+		  					{if $messages}
+				  				<div class='alert alert-danger'>
+			  						<a class="close" data-dismiss="alert" href="#">&times;</a>
+				  					{foreach from=$messages item=message}
+				  						{$message}<br/>
+				  					{/foreach}
+			  					</div>
+		  					{/if}
 			  				<ul class="breadcrumb">
 								  <li>
 								    Register <span class="divider">/</span>

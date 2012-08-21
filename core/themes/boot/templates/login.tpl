@@ -28,22 +28,49 @@
 		  		<div class="span12">
 		  			<div class='login' id='login_form' style='display:none;'>
 		  			{if $arg.0 == 'register'}
-	  					<ul class="breadcrumb">
-							  <li>
-							    Register <span class="divider">/</span>
-							  </li>
-							  <li class="active">Step 1</li>
-							</ul>
-		  				<div class="progress progress-striped active">
-							  <div class="bar" style="width: 20%;"></div>
-							</div>
-			        <form name='{$form_raw.meta.name}' method='{$form_raw.meta.method}' class='{$form_raw.meta.class}' action='{$form_raw.meta.action}' id='{$form_raw.meta.id}' style='margin-bottom: 10px;'>
-	  						<input type='hidden' name='submitted_form' value='{$form_raw.fields.submitted_form.value}' placeholder='{$form_raw.fields.submitted_form.label}'/>
-			          <input type='{$form_raw.fields.email.type}' name='{$form_raw.fields.email.name}' placeholder='{$form_raw.fields.email.label}' style='margin-bottom: 10px; width:274px;'/>
-			          <input type='{$form_raw.fields.password.type}' name='{$form_raw.fields.password.name}' placeholder='{$form_raw.fields.password.label}' style='margin-bottom: 15px; width:274px;'/>
-	  						<input type='{$form_raw.buttons.register_button.type}' value='{$form_raw.buttons.register_button.value}' class='btn btn-primary btn-large' style='width: 63%;'/>
-	  						<a href='{$base_path}' class='btn btn-large pull-right' style='font-family: Arial;'><i class='icon-remove'></i> Cancel</a>
-	  					</form>
+		  				{if !$arg.1}
+			  				{if $messages}
+			  					<div class='alert alert-danger'>
+			  						<a class="close" data-dismiss="alert" href="#">&times;</a>
+				  					{foreach from=$messages item=message}
+				  						{$message}<br/>
+				  					{/foreach}
+			  					</div>
+			  				{/if}
+		  					<ul class="breadcrumb">
+								  <li>
+								    Register <span class="divider">/</span>
+								  </li>
+								  <li class="active">Step 1</li>
+								</ul>
+			  				<div class="progress progress-striped active">
+								  <div class="bar" style="width: 20%;"></div>
+								</div>
+				        <form name='{$form_raw.meta.name}' method='{$form_raw.meta.method}' class='{$form_raw.meta.class}' action='{$form_raw.meta.action}' id='{$form_raw.meta.id}' style='margin-bottom: 10px;'>
+		  						<input type='hidden' name='submitted_form' value='{$form_raw.fields.submitted_form.value}' placeholder='{$form_raw.fields.submitted_form.label}'/>
+				          <input type='{$form_raw.fields.name.type}' name='{$form_raw.fields.name.name}' placeholder='{$form_raw.fields.name.label}' style='margin-bottom: 10px; width:274px;'/>
+				          <input type='{$form_raw.fields.email.type}' name='{$form_raw.fields.email.name}' placeholder='{$form_raw.fields.email.label}' style='margin-bottom: 10px; width:274px;'/>
+				          <input type='{$form_raw.fields.password.type}' name='{$form_raw.fields.password.name}' placeholder='{$form_raw.fields.password.label}' style='margin-bottom: 15px; width:274px;'/>
+				          <input type='{$form_raw.fields.password_again.type}' name='{$form_raw.fields.password_again.name}' placeholder='{$form_raw.fields.password_again.label}' style='margin-bottom: 15px; width:274px;'/>
+		  						<input type='{$form_raw.buttons.register_button.type}' value='{$form_raw.buttons.register_button.value}' class='btn btn-primary btn-large' style='width: 63%;'/>
+		  						<a href='{$base_path}' class='btn btn-large pull-right' style='font-family: Arial;'><i class='icon-remove'></i> Cancel</a>
+		  					</form>
+		  				{elseif $arg.1 == '2'}
+			  				<ul class="breadcrumb">
+								  <li>
+								    Register <span class="divider">/</span>
+								  </li>
+								  <li class="active">Step 2</li>
+								</ul>
+								<div class='alert'>
+									We have sent a confirmation email with an activation code to {$node.email}.
+								</div>
+								<form name='{$form_raw.meta.name}' method='{$form_raw.meta.method}' class='{$form_raw.meta.class}' action='{$form_raw.meta.action}' id='{$form_raw.meta.id}' style='margin-bottom: 10px;'>
+		  						<input type='hidden' name='submitted_form' value='{$form_raw.fields.submitted_form.value}' placeholder='{$form_raw.fields.submitted_form.label}'/>
+				          <input type='{$form_raw.fields.activation_code.type}' name='{$form_raw.fields.activation_code.name}' placeholder='{$form_raw.fields.activation_code.label}' style='margin-bottom: 10px; width:274px;'/>
+			          	<input type='{$form_raw.buttons.register_button.type}' value='{$form_raw.buttons.register_button.value}' class='btn btn-primary btn-large' style='width: 63%;'/>
+		  					</form>
+		  				{/if}
 		  			{elseif $arg.0 == 'lostpassword'}
 		  				<ul class="breadcrumb">
 							  <li><i class='icon-lock'></i> Password Assistant</li>

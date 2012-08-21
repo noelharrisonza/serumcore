@@ -32,44 +32,93 @@ class permissions {
   }
 
   // The login form.
-  function login_form() {
+  function login_form() 
+  {
     tpl_set('page_description', 'Login');
-    $arg = arg(0);
-    if($arg[0] == "register")
+    $arg1 = arg(0);
+    $arg2 = arg(1);
+    $arg3 = arg(2);
+    if($arg1[0] == "register")
     {
-      // Initiate a new form.
-      $form = new forms(array(
-        'name' => 'register_form',
-        'method' => 'post',
-        'action' => '',
-        'class' => 'register_form form-horizontal',
-        'id' => 'register-form',
-      ));
+      if(!$arg2[0])
+      {
+        // Initiate a new form.
+        $form = new forms(array(
+          'name' => 'register_form',
+          'method' => 'post',
+          'action' => '',
+          'class' => 'register_form form-horizontal',
+          'id' => 'register-form',
+        ));
 
-      // Now we start to add some fields.
-      $form->add_field(array(
-        'type' => 'text',
-        'name' => 'email',
-        'label' => t('Email Address'),
-      ));
+        $form->add_field(array(
+          'type' => 'text',
+          'name' => 'name',
+          'label' => t('Name & Surname'),
+        ));
+        
+        $form->add_field(array(
+          'type' => 'text',
+          'name' => 'email',
+          'label' => t('Email Address'),
+        ));
 
-      $form->add_field(array(
-        'type' => 'password',
-        'name' => 'password',
-        'label' => t('Password'),
-      ));
+        $form->add_field(array(
+          'type' => 'password',
+          'name' => 'password',
+          'label' => t('Password'),
+        ));
 
-      // Add a submit button.
-      $form->add_button(array(
-        'type' => 'submit',
-        'name' => 'register_button',
-        'value' => 'Register',
-        'class' => 'btn btn-primary',
-      ));
+        $form->add_field(array(
+          'type' => 'password',
+          'name' => 'password_again',
+          'label' => t('Password Again'),
+        ));
 
-      // And now we deal with validations and submissions.
-      $form->validate('permissions.validate_login_form');
-      $form->submit('permissions.submit_register_form');
+        // Add a submit button.
+        $form->add_button(array(
+          'type' => 'submit',
+          'name' => 'register_button',
+          'value' => 'Register',
+          'class' => 'btn btn-primary',
+        ));
+
+        // And now we deal with validations and submissions.
+        $form->validate('permissions.validate_register_form');
+        $form->submit('permissions.submit_register_form');
+      }
+      elseif($arg2[0] == 2)
+      {
+        $node = new node($arg3);
+        tpl_set('node',objectArray($node));
+        
+        // Initiate a new form.
+        $form = new forms(array(
+          'name' => 'register_form',
+          'method' => 'post',
+          'action' => '',
+          'class' => 'register_form form-horizontal',
+          'id' => 'register-form',
+        ));
+
+        $form->add_field(array(
+          'type' => 'text',
+          'name' => 'activation_code',
+          'label' => t('Activation Code'),
+        ));
+
+        // Add a submit button.
+        $form->add_button(array(
+          'type' => 'submit',
+          'name' => 'register_button',
+          'value' => 'Activate',
+          'class' => 'btn btn-primary',
+        ));
+
+        // And now we deal with validations and submissions.
+        $form->validate('permissions.validate_activation_form');
+        $form->submit('permissions.submit_activation_form');
+      }
     }
     elseif($arg[0] == 'lostpassword')
     {
@@ -137,15 +186,53 @@ class permissions {
       $form->validate('permissions.validate_login_form');
       $form->submit('permissions.submit_login_form');
     }
-
     // form testing
     $form->render();
+  }
+
+  function validate_activation_form($form)
+  {
+    return true;
+  }
+
+  function validate_register_form($form)
+  {
+    $form_errors = array();
+
+    // We need to have a name.
+    if (!$form['fields']['name']['value']) {
+      $form_errors['name'] = 'Name & Surname required';
+    }
+
+    // We need to have a email.
+    if (!$form['fields']['email']['value']) {
+      $form_errors['email'] = 'Email address is a required field';
+    }
+
+    // And we also have to have a password.
+    if (!$form['fields']['password']['value']) {
+      $form_errors['password'] = 'Password is a required field';
+    }
+
+    // And we also have to have a password.
+    if ($form['fields']['password']['value'] != $form['fields']['password_again']['value']) {
+      $form_errors['password_again'] = 'Passwords do not match';
+    }
+
+    // If there are any errors we return must tell the user about them and return the form.
+    if (!empty($form_errors)) {
+      form_set_error($form, $form_errors);
+      return false;
+    }
+
+    // If everyone is happy we can return true.
+    return true;
   }
   
   // Validate the form values.
   function validate_login_form($form) {
     $form_errors = array();
-
+    
     // We need to have a username.
     if (!$form['fields']['username']['value']) {
       $form_errors['username'] = 'Username is a required field';
@@ -186,11 +273,14 @@ class permissions {
 
   function submit_register_form($form)
   {
-    /*$node = node::add_new('title','',1);
-    //Now loop through the rest of this array and add it to the node.
-    foreach($form['fields'] as $k => $v)
-    {
-      $node->add_field($v['name'],$v['value']);
-    }*/
+    $node = node::add_new('title',$form['fields']['name']['value'],1);
+    $node->add_field('email',$form['fields']['email']['value']);
+    $node->add_field('password',sha1($form['fields']['password']['value']));
+    header('location:'. base_path().'register/2/'.$node->id);
+  }
+
+  function submit_activation_form($form)
+  {
+
   }
 }

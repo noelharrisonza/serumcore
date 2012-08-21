@@ -121,7 +121,7 @@ class permissions {
       }
       elseif($arg2[0] == 3)
       {
-
+        header('location: '. base_path());
       }
     }
     else if($arg1[0] == 'lostpassword')
@@ -190,6 +190,7 @@ class permissions {
       $form->validate('permissions.validate_login_form');
       $form->submit('permissions.submit_login_form');
     }
+
     // form testing
     $form->render();
   }
@@ -290,10 +291,24 @@ class permissions {
 
   function submit_register_form($form)
   {
+    $notifications = new notifications();
+
     $node = node::add_new('title',$form['fields']['name']['value'],1);
     $node->add_field('email',$form['fields']['email']['value']);
     $node->add_field('password',sha1($form['fields']['password']['value']));
-    $node->add_field('activation_code',uniqid().rand());
+
+    // Create the activation code.
+    $activation_code = uniqid().rand();
+    $node->add_field('activation_code', $activation_code);
+    
+    // Then send the code to the new user.
+    $reg_email = array(
+      'to' => $form['fields']['email']['value'],
+      'subject' => 'Activate your Serum Core login',
+      'message' => 'Activation code: '. $activation_code,
+    );
+    $notifications->mail($reg_email);
+
     header('location:'. base_path().'register/2/'.$node->id);
   }
 

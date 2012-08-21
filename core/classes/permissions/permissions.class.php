@@ -119,6 +119,10 @@ class permissions {
         $form->validate('permissions.validate_activation_form');
         $form->submit('permissions.submit_activation_form');
       }
+      elseif($arg2[0] == 3)
+      {
+
+      }
     }
     else if($arg1[0] == 'lostpassword')
     {
@@ -192,6 +196,19 @@ class permissions {
 
   function validate_activation_form($form)
   {
+    $node_id = arg(2);
+    $node = new node($node_id);
+
+    $form_errors = array();
+    if($form['fields']['activation_code']['value'] != $node->activation_code)
+    {
+      $form_errors['activation_code'] = 'Incorrect activation code';
+    }
+
+    if (!empty($form_errors)) {
+      form_set_error($form, $form_errors);
+      return false;
+    }
     return true;
   }
 
@@ -276,11 +293,12 @@ class permissions {
     $node = node::add_new('title',$form['fields']['name']['value'],1);
     $node->add_field('email',$form['fields']['email']['value']);
     $node->add_field('password',sha1($form['fields']['password']['value']));
+    $node->add_field('activation_code',uniqid().rand());
     header('location:'. base_path().'register/2/'.$node->id);
   }
 
   function submit_activation_form($form)
   {
-
+    header('location:'. base_path().'register/3/'.arg(2)); 
   }
 }

@@ -17,7 +17,7 @@ class notifications extends node {
    */
   function mail($data = array()) {
     // Call up PHPMailer
-    /*$mail = new PHPMailer();
+    $mail = new PHPMailer();
     
     // Send using SMTP.
     $mail->IsSMTP();
@@ -27,12 +27,12 @@ class notifications extends node {
     $mail->SMTPAuth = true; // turn on SMTP authentication
 
     // This will come from a database soon soon :).
-    $mail->Host = "smtp.gmail.com"; // specify main and backup server
-    $mail->Username = "noel.harrison2@gmail.com"; // SMTP username
-    $mail->Password = "metrorail"; // SMTP password
-    $mail->Port = 465;
+    $mail->Host = "amoeba1.abs.office"; // specify main and backup server
+    $mail->Username = "vtiger"; // SMTP username
+    $mail->Password = "M3nt0R"; // SMTP password
+    $mail->Port = 25;
 
-    $mail->From = "noel.harrison2@gmail.com";
+    $mail->From = "jonathanw@amoebasys.biz";
     $mail->FromName = "Serum Core";
 
     $mail->AddAddress($data['to']);
@@ -48,6 +48,6 @@ class notifications extends node {
       echo "Message could not be sent. <p>";
       echo "Mailer Error: " . $mail->ErrorInfo;
       exit;
-    }*/
+    }
   }
 }

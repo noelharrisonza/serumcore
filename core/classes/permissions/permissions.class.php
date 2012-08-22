@@ -302,12 +302,12 @@ class permissions {
     $node->add_field('activation_code', $activation_code);
     
     // Then send the code to the new user.
-    /*$reg_email = array(
+    $reg_email = array(
       'to' => $form['fields']['email']['value'],
-      'subject' => 'Activate your Serum Core Account',
+      'subject' => 'Activate your Serum Core login',
       'message' => 'Activation code: '. $activation_code,
     );
-    $notifications->mail($reg_email);*/
+    $notifications->mail($reg_email);
 
     header('location:'. base_path().'register/2/'.$node->id);
   }

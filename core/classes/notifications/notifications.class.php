@@ -28,8 +28,8 @@ class notifications extends node {
 
     // This will come from a database soon soon :).
     $mail->Host = "amoeba1.abs.office"; // specify main and backup server
-    $mail->Username = "jonathan"; // SMTP username
-    $mail->Password = "th3@m03b@"; // SMTP password
+    $mail->Username = "vtiger"; // SMTP username
+    $mail->Password = "M3nt0R"; // SMTP password
     $mail->Port = 25;
 
     $mail->From = "jonathanw@amoebasys.biz";

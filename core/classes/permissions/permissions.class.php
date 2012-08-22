@@ -303,6 +303,9 @@ class permissions {
     
     // Then send the code to the new user.
     $reg_email = array(
+      'from' => 'serum@serumcore.com',
+      'from_name' => 'Serum Core',
+      'is_html' => true,
       'to' => $form['fields']['email']['value'],
       'subject' => 'Activate your Serum Core login',
       'message' => 'Activation code: '. $activation_code,

@@ -1,1 +1,2 @@
-custom/files/tmp
+custom/files/tmp/*
+custom/settings.ini

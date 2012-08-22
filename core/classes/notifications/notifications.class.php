@@ -16,6 +16,8 @@ class notifications extends node {
    * Send an email.
    */
   function mail($data = array()) {
+    global $settings;
+    
     // Call up PHPMailer
     $mail = new PHPMailer();
     
@@ -26,28 +28,26 @@ class notifications extends node {
 
     $mail->SMTPAuth = true; // turn on SMTP authentication
 
-    // This will come from a database soon soon :).
-    $mail->Host = "amoeba1.abs.office"; // specify main and backup server
-    $mail->Username = "vtiger"; // SMTP username
-    $mail->Password = "M3nt0R"; // SMTP password
-    $mail->Port = 25;
+    // This comes from the settings file.
+    $mail->Host = $settings['smtp']['host'];
+    $mail->Username = $settings['smtp']['username'];
+    $mail->Password = $settings['smtp']['password'];
+    $mail->Port = $settings['smtp']['port'];
 
-    $mail->From = "jonathanw@amoebasys.biz";
-    $mail->FromName = "Serum Core";
+    $mail->From = $data['from'];
+    $mail->FromName = $data['from_name'];
 
     $mail->AddAddress($data['to']);
 
     $mail->WordWrap = 80;
-    $mail->IsHTML(true); // set email format to HTML otherwise if text use false.
+    $mail->IsHTML($data['is_html']); // set email format to HTML otherwise if text use false.
 
     $mail->Subject = $data['subject'];
 
     $mail->Body = $data['message'];
 
     if(!$mail->Send()) {
-      echo "Message could not be sent. <p>";
-      echo "Mailer Error: " . $mail->ErrorInfo;
-      exit;
+      serum_set_message('There was an error sending the email. '. $mail->errorInfo);
     }
   }
 }

@@ -34,22 +34,20 @@ class notifications extends node {
     $mail->Password = $settings['smtp']['password'];
     $mail->Port = $settings['smtp']['port'];
 
-    $mail->From = "jonathanw@amoebasys.biz";
-    $mail->FromName = "Serum Core";
+    $mail->From = $data['from'];
+    $mail->FromName = $data['from_name'];
 
     $mail->AddAddress($data['to']);
 
     $mail->WordWrap = 80;
-    $mail->IsHTML(true); // set email format to HTML otherwise if text use false.
+    $mail->IsHTML($data['is_html']); // set email format to HTML otherwise if text use false.
 
     $mail->Subject = $data['subject'];
 
     $mail->Body = $data['message'];
 
     if(!$mail->Send()) {
-      echo "Message could not be sent. <p>";
-      echo "Mailer Error: " . $mail->ErrorInfo;
-      exit;
+      serum_set_message('There was an error sending the email. '. $mail->errorInfo);
     }
   }
 }

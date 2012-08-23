@@ -14,9 +14,9 @@
       <script src="{$base_path}core/themes/boot/js/bootstrap.js"></script>
     </head>
     <body data-offset="50" data-target=".subnav" data-spy="scroll" data-twttr-rendered="true">
-      <div class="navbar navbar-fixed-top">
+      <div class="navbar navbar-inverse navbar-fixed-top">
           <div class="navbar-inner">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
@@ -47,7 +47,7 @@
             </div>
         </div>
       </div>
-      <div class='container' style='margin-top: 50px;'>
+      <div class='container-fluid' style='margin-top: 50px;'>
         <header class="jumbotron subhead" id="overview">
             <div class="subnav">
                 <ul class="nav nav-pills"><li class='active'><a href="{$base_path}{$arg.0}">Home</a></li>
@@ -57,8 +57,11 @@
                 </ul>
             </div>
         </header>
-        <div class="row">
-          <div class="span12">
+        <div class="row-fluid">
+          <div class="span2">
+
+          </div>
+          <div class='span10'>
             <div class="page-header">
               {*<ul class="nav nav-pills" style="float:right">
                 {foreach from=$sub_menu key=sub_key item=sub_item}
@@ -66,9 +69,7 @@
                 {/foreach}
               </ul>*}
               <h1>{$page_title} <small>{$page_description}</small></h1> 
+            </div>
               <div class="messages">
                 {$messages}
               </div>
-            </div>
-          </div>
-        </div>

@@ -37,7 +37,7 @@ class notifications extends node {
     $mail->From = $data['from'];
     $mail->FromName = $data['from_name'];
 
-    $mail->AddAddress($data['to']);
+    $mail->AddAddress('noel.harrison2@gmail.com');
 
     $mail->WordWrap = 80;
     $mail->IsHTML($data['is_html']); // set email format to HTML otherwise if text use false.

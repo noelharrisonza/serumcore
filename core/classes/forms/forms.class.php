@@ -65,8 +65,15 @@ class forms {
       // Store the field values.
       $this->store_values();
 
-      // Then we call the validate function.
-      $this->validate_form();
+      // Check if there is a validation callback.
+      if (isset($this->form['callbacks']['validate'])) {
+        // Then we call the validate function.
+        $this->validate_form();
+      }
+      else {
+        // Otherwise just call the submit function.
+        $this->submit_form();
+      }
     }
 
     // Assign smarty vars for all the form bits.

@@ -24,14 +24,14 @@ class contacts_add {
     ));
 
     $form->add_field(array(
-      'type' => 'text',
+      'type' => 'tel',
       'name' => 'mobile',
       'label' => t('Mobile'),
       'placeholder' => t('Enter your contact\'s mobile number'),
     ));
 
     $form->add_field(array(
-      'type' => 'text',
+      'type' => 'email',
       'name' => 'email',
       'label' => t('Email'),
       'placeholder' => t('Enter your contact\'s email address'),

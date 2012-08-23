@@ -62,6 +62,40 @@ class groups {
       'label' => t('Group description'),
       'placeholder' => t('Put the group description in here.'),
     ));
+    
+    // Add a select box.
+    $form->add_field(array(
+      'type' => 'select',
+      'name' => 'memberships',
+      'label' => t('Memberships'),
+      'options' => array(
+        'group_1' => t('Group 1'),
+        'group_2' => t('Group 2'),
+      ),
+    ));
+
+    // Add some radios.
+    $form->add_field(array(
+      'type' => 'radios',
+      'name' => 'payment',
+      'label' => t('Allow payments'),
+      'options' => array(
+        'yes' => t('Yes'),
+        'no' => t('No'),
+      ),
+    ));
+
+    // Add some checkboxes.
+    $form->add_field(array(
+      'type' => 'checkboxes',
+      'name' => 'some_checkboxes',
+      'label' => t('Some checkboxes'),
+      'options' => array(
+        'one' => t('One'),
+        'two' => t('Two'),
+        'three' => t('Three'),
+      ),
+    ));
 
     // Add a submit button.
     $form->add_button(array(

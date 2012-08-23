@@ -50,17 +50,16 @@
       <div class='container-fluid' style='margin-top: 50px;'>
         <div class="row-fluid">
           <div class="span2">
+            <div class="well well-small" style="padding: 8px 0;">
+              <ul class="nav nav-list">
+                <li class='active'><a href="{$base_path}{$arg.0}"><i class='icon icon-home'></i> Home</a></li>
+                {foreach from=$sub_menu key=sub_key item=sub_item}
+                  <li><a href="{$base_path}{$sub_key}">{$sub_item.title|ucwords}</a></li>
+                {/foreach}
+              </ul>
+            </div> 
           </div>
           <div class='span10'>
-            <header class="jumbotron subhead" id="overview">
-                <div class="subnav">
-                    <ul class="nav nav-pills"><li class='active'><a href="{$base_path}{$arg.0}">Home</a></li>
-                      {foreach from=$sub_menu key=sub_key item=sub_item}
-                        <li><a href="{$base_path}{$sub_key}">{$sub_item.title|ucwords}</a></li>
-                      {/foreach}
-                    </ul>
-                </div>
-            </header>
             <div class="page-header">
               {*<ul class="nav nav-pills" style="float:right">
                 {foreach from=$sub_menu key=sub_key item=sub_item}

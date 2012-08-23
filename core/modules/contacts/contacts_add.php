@@ -21,6 +21,7 @@ class contacts_add {
       'name' => 'title',
       'label' => t('Name'),
       'placeholder' => t('Enter your contact\'s full name'),
+      'required' => true,
     ));
 
     $form->add_field(array(

@@ -13,6 +13,7 @@ class groups {
       'title' => t('Groups'),
       'description' => t('Group like a boss'),
       'callback' => 'groups.groups_home',
+      'icon' => 'groups',
     );
 
     $urls['groups/add'] = array(

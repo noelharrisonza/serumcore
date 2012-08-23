@@ -263,6 +263,10 @@ function get_menu_tree() {
       $url_val['type'] = 'normal';
     }
     
+    if (!$url_val['icon']) {
+      $url_val['icon'] = 'default';
+    }
+
     if ($url_key == $url_val['module'] && $url_val['type'] != 'callback') {
       $urls[$url_val['module']][$url_val['module']] = $url_val;
     }

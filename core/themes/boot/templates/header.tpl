@@ -54,7 +54,7 @@
               <ul class="nav nav-list">
                 <li class='active'><a href="{$base_path}{$arg.0}"><i class='icon icon-home'></i> Home</a></li>
                 {foreach from=$sub_menu key=sub_key item=sub_item}
-                  <li><a href="{$base_path}{$sub_key}">{$sub_item.title|ucwords}</a></li>
+                  <li><a href="{$base_path}{$sub_key}" class="icon-{$sub_item.icon}">{$sub_item.title|ucwords}</a></li>
                 {/foreach}
               </ul>
             </div> 

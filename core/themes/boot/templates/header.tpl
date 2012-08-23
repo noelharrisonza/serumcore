@@ -49,7 +49,7 @@
       </div>
       <div class='container-fluid' style='margin-top: 50px;'>
         <div class="row-fluid">
-          <div class="span2" style=''>
+          <div class="span2">
           </div>
           <div class='span10'>
             <header class="jumbotron subhead" id="overview">

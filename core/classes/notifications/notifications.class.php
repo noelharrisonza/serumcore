@@ -26,7 +26,7 @@ class notifications extends node {
 
     $mail->SMTPDebug  = 1;
 
-    $mail->SMTPAuth = true; // turn on SMTP authentication
+    $mail->SMTPAuth = false; // turn on SMTP authentication
 
     // This comes from the settings file.
     $mail->Host = $settings['smtp']['host'];

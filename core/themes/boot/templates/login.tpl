@@ -15,7 +15,7 @@
 		<script src="{$base_path}core/themes/boot/js/jquery.backstretch.min.js"></script>
 		<script>
 		    $.backstretch("{$base_path}core/themes/boot/img/oceanwave.jpg");
-		</script>
+		</script>	
 	  </head>
 	  <body data-offset="50" data-target=".subnav" data-spy="scroll" data-twttr-rendered="true">
 	  {if $arg.0 != 'lostpassword'}

@@ -303,7 +303,7 @@ class permissions {
     
     // Then send the code to the new user.
     $reg_email = array(
-      'from' => 'serum@serumcore.com',
+      'from' => 'jonathan.wagener@gmail.com',
       'from_name' => 'Serum Core',
       'is_html' => true,
       'to' => $form['fields']['email']['value'],
